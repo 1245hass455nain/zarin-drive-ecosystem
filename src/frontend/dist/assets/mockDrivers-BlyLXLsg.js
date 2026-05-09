@@ -1,0 +1,203 @@
+const mockDrivers = [
+  {
+    id: "driver-1",
+    name: "Muhammad Asif",
+    phone: "0300-1234567",
+    vehicleType: "car",
+    vehiclePlate: "GWD-2021-1234",
+    rank: "platinum",
+    walletBalance: 2400,
+    status: "online",
+    rating: 4.8,
+    activationCode: "ZRN-2024-001"
+  },
+  {
+    id: "driver-2",
+    name: "Abdul Rehman",
+    phone: "0311-9876543",
+    vehicleType: "bike",
+    vehiclePlate: "GWD-2022-5678",
+    rank: "gold",
+    walletBalance: 1200,
+    status: "on_ride",
+    rating: 4.5,
+    activationCode: "ZRN-2024-002"
+  },
+  {
+    id: "driver-3",
+    name: "Gul Hassan",
+    phone: "0333-5551234",
+    vehicleType: "premium",
+    vehiclePlate: "GWD-2023-9012",
+    rank: "diamond",
+    walletBalance: 3800,
+    status: "online",
+    rating: 4.9,
+    activationCode: "ZRN-2024-003"
+  },
+  {
+    id: "driver-4",
+    name: "Noor Ahmed",
+    phone: "0345-7778901",
+    vehicleType: "rickshaw",
+    vehiclePlate: "GWD-2021-3456",
+    rank: "gold",
+    walletBalance: 850,
+    status: "offline",
+    rating: 4.2,
+    activationCode: "ZRN-2024-004"
+  },
+  {
+    id: "driver-5",
+    name: "Shakeel Baloch",
+    phone: "0302-4445678",
+    vehicleType: "car",
+    vehiclePlate: "GWD-2020-7890",
+    rank: "platinum",
+    walletBalance: 5200,
+    status: "on_ride",
+    rating: 4.7,
+    activationCode: "ZRN-2024-005"
+  },
+  {
+    id: "driver-6",
+    name: "Daud Mengal",
+    phone: "0321-2223456",
+    vehicleType: "bike",
+    vehiclePlate: "GWD-2023-2345",
+    rank: "gold",
+    walletBalance: 620,
+    status: "online",
+    rating: 4.4,
+    activationCode: "ZRN-2024-006"
+  },
+  {
+    id: "driver-7",
+    name: "Zahid Hussain",
+    phone: "0331-6667890",
+    vehicleType: "premium",
+    vehiclePlate: "GWD-2022-6789",
+    rank: "platinum",
+    walletBalance: 7100,
+    status: "online",
+    rating: 4.6,
+    activationCode: "ZRN-2024-007"
+  },
+  {
+    id: "driver-8",
+    name: "Iqbal Zehri",
+    phone: "0312-8889012",
+    vehicleType: "rickshaw",
+    vehiclePlate: "GWD-2021-8901",
+    rank: "gold",
+    walletBalance: 1050,
+    status: "offline",
+    rating: 4.1,
+    activationCode: "ZRN-2024-008"
+  },
+  {
+    id: "driver-9",
+    name: "Bashir Kalmati",
+    phone: "0307-1112345",
+    vehicleType: "car",
+    vehiclePlate: "GWD-2023-1234",
+    rank: "diamond",
+    walletBalance: 4300,
+    status: "online",
+    rating: 4.8,
+    activationCode: "ZRN-2024-009"
+  },
+  {
+    id: "driver-10",
+    name: "Hafeez Rind",
+    phone: "0344-3334567",
+    vehicleType: "bike",
+    vehiclePlate: "GWD-2022-4567",
+    rank: "gold",
+    walletBalance: 780,
+    status: "on_ride",
+    rating: 4.3,
+    activationCode: "ZRN-2024-010"
+  },
+  {
+    id: "driver-11",
+    name: "Farrukh Marri",
+    phone: "0323-5556789",
+    vehicleType: "car",
+    vehiclePlate: "GWD-2020-5678",
+    rank: "diamond",
+    walletBalance: 4900,
+    status: "online",
+    rating: 4.7,
+    activationCode: "ZRN-2024-011"
+  },
+  {
+    id: "driver-12",
+    name: "Sajjad Buledi",
+    phone: "0309-1112222",
+    vehicleType: "car",
+    vehiclePlate: "GWD-2023-3456",
+    rank: "gold",
+    walletBalance: 1560,
+    status: "online",
+    rating: 4.4,
+    activationCode: "ZRN-2024-012"
+  },
+  {
+    id: "driver-13",
+    name: "Khalid Gichki",
+    phone: "0315-4443210",
+    vehicleType: "rickshaw",
+    vehiclePlate: "GWD-2022-7654",
+    rank: "gold",
+    walletBalance: 970,
+    status: "offline",
+    rating: 4,
+    activationCode: "ZRN-2024-013"
+  },
+  {
+    id: "driver-14",
+    name: "Rashid Pirkani",
+    phone: "0340-9998877",
+    vehicleType: "premium",
+    vehiclePlate: "GWD-2024-0011",
+    rank: "diamond",
+    walletBalance: 6400,
+    status: "online",
+    rating: 4.9,
+    activationCode: "ZRN-2024-014"
+  },
+  {
+    id: "driver-15",
+    name: "Amir Nausherwani",
+    phone: "0318-6665432",
+    vehicleType: "bike",
+    vehiclePlate: "GWD-2023-8899",
+    rank: "gold",
+    walletBalance: 440,
+    status: "on_ride",
+    rating: 4.5,
+    activationCode: "ZRN-2024-015"
+  }
+];
+const driverCoordinates = {
+  "driver-1": { lat: 25.131, lng: 62.325 },
+  "driver-2": { lat: 25.118, lng: 62.315 },
+  "driver-3": { lat: 25.14, lng: 62.338 },
+  "driver-4": { lat: 25.109, lng: 62.328 },
+  "driver-5": { lat: 25.125, lng: 62.319 },
+  "driver-6": { lat: 25.135, lng: 62.332 },
+  "driver-7": { lat: 25.121, lng: 62.341 },
+  "driver-8": { lat: 25.113, lng: 62.323 },
+  "driver-9": { lat: 25.129, lng: 62.316 },
+  "driver-10": { lat: 25.144, lng: 62.327 },
+  "driver-11": { lat: 25.117, lng: 62.334 },
+  "driver-12": { lat: 25.138, lng: 62.321 },
+  "driver-13": { lat: 25.112, lng: 62.33 },
+  "driver-14": { lat: 25.127, lng: 62.342 },
+  "driver-15": { lat: 25.143, lng: 62.313 }
+};
+export {
+  driverCoordinates as d,
+  mockDrivers as m
+};

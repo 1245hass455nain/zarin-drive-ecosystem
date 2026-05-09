@@ -1,0 +1,196 @@
+type Wallet = 
+ record {
+   commissionOwed: int;
+   driverId: DriverId;
+   lastUpdated: Timestamp;
+   netBalance: int;
+   totalEarned: int;
+ };
+type VehicleType = 
+ variant {
+   Bike;
+   Car;
+   Premium;
+   Rickshaw;
+ };
+type Timestamp = int;
+type RideStatus = 
+ variant {
+   accepted;
+   arriving;
+   cancelled;
+   completed;
+   inProgress;
+   reached;
+   searching;
+   started;
+ };
+type RideId = nat;
+type Ride = 
+ record {
+   baseFare: int;
+   completedAt: opt Timestamp;
+   createdAt: Timestamp;
+   customerId: CustomerId;
+   customerRating: opt nat;
+   distanceFare: int;
+   driverId: opt DriverId;
+   driverRating: opt nat;
+   dropAddress: text;
+   dropLat: float64;
+   dropLng: float64;
+   id: RideId;
+   otp: text;
+   paymentMethod: PaymentMethod;
+   pickupAddress: text;
+   pickupLat: float64;
+   pickupLng: float64;
+   status: RideStatus;
+   totalFare: int;
+   vehicleType: VehicleType;
+ };
+type PromoStatus = 
+ variant {
+   active;
+   inactive;
+ };
+type PromoCodeId = nat;
+type PromoCode = 
+ record {
+   code: text;
+   discountAmount: int;
+   discountType: DiscountType;
+   expiryDate: Timestamp;
+   id: PromoCodeId;
+   status: PromoStatus;
+   usageCount: nat;
+   usageLimit: nat;
+ };
+type PaymentMethod = 
+ variant {
+   cash;
+   easypaisa;
+   jazzCash;
+   wallet;
+ };
+type DriverStatus = 
+ variant {
+   blocked;
+   offline;
+   onRide;
+   online;
+   suspended;
+ };
+type DriverRank = 
+ variant {
+   Diamond;
+   Gold;
+   Platinum;
+ };
+type DriverId = nat;
+type Driver = 
+ record {
+   activationCode: text;
+   cnic: text;
+   id: DriverId;
+   licenseNumber: text;
+   name: text;
+   phone: text;
+   rank: DriverRank;
+   rating: float64;
+   status: DriverStatus;
+   totalRides: nat;
+   vehicleColor: text;
+   vehicleModel: text;
+   vehiclePlate: text;
+   vehicleType: VehicleType;
+   walletBalance: int;
+ };
+type DiscountType = 
+ variant {
+   fixed;
+   percentage;
+ };
+type CustomerStatus = 
+ variant {
+   active;
+   banned;
+   suspended;
+ };
+type CustomerId = nat;
+type Customer = 
+ record {
+   email: text;
+   id: CustomerId;
+   joinDate: Timestamp;
+   name: text;
+   phone: text;
+   status: CustomerStatus;
+   totalRides: nat;
+   walletBalance: int;
+ };
+type AdminLogId = nat;
+type AdminLog = 
+ record {
+   action: text;
+   adminId: text;
+   details: text;
+   id: AdminLogId;
+   target: text;
+   timestamp: Timestamp;
+ };
+type ActivationCodeId = nat;
+type ActivationCode = 
+ record {
+   code: text;
+   expiryDate: Timestamp;
+   id: ActivationCodeId;
+   used: bool;
+   usedAt: opt Timestamp;
+   usedBy: opt text;
+ };
+service : {
+  addActivationCode: (code: ActivationCode) -> (ActivationCode);
+  addAdminLog: (log: AdminLog) -> (AdminLog);
+  addCustomer: (customer: Customer) -> (Customer);
+  addDriver: (driver: Driver) -> (Driver);
+  addPromoCode: (promo: PromoCode) -> (PromoCode);
+  addRide: (ride: Ride) -> (Ride);
+  getCustomer: (id: CustomerId) -> (opt Customer) query;
+  getDriver: (id: DriverId) -> (opt Driver) query;
+  getRide: (id: RideId) -> (opt Ride) query;
+  getWallet: (driverId: DriverId) -> (opt Wallet) query;
+  listActivationCodes: () -> (vec ActivationCode) query;
+  listAdminLogs: () -> (vec AdminLog) query;
+  listCustomers: () -> (vec Customer) query;
+  listDrivers: () -> (vec Driver) query;
+  listPromoCodes: () -> (vec PromoCode) query;
+  listRides: () -> (vec Ride) query;
+  listWallets: () -> (vec Wallet) query;
+  updateCustomer: (customer: Customer) -> (variant {
+                                             notFound;
+                                             ok;
+                                           });
+  updateDriver: (driver: Driver) -> (variant {
+                                       notFound;
+                                       ok;
+                                     });
+  updatePromoCode: (promo: PromoCode) -> (variant {
+                                            notFound;
+                                            ok;
+                                          });
+  updateRideStatus: (id: RideId, status: RideStatus, completedAt:
+   opt Timestamp, customerRating: opt nat, driverRating: opt nat, driverId:
+   opt DriverId) -> (variant {
+                       notFound;
+                       ok;
+                     });
+  updateWallet: (wallet: Wallet) -> (Wallet);
+  useActivationCode: (code: text, usedBy: text) ->
+   (variant {
+      alreadyUsed;
+      expired;
+      notFound;
+      ok: ActivationCode;
+    });
+}

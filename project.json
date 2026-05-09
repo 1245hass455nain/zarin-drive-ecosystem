@@ -1,0 +1,24 @@
+{
+  "overview": "Zarin Drive is a complete ride-booking platform for Gwadar, Balochistan with three integrated apps: a customer booking app, a driver operations app, and an admin control dashboard. All features run on mock data with full UI simulation.",
+  "features": [
+    "Customer ride booking with live Leaflet map, vehicle selection, and real-time ride status",
+    "Driver app with incoming ride cards, 30-second timer, OTP verification, and earnings tracking",
+    "Admin dashboard with live map monitoring, driver/customer management, wallet controls, and analytics",
+    "Gold/Black/White premium theme with dark/light mode toggle",
+    "English and Urdu language support across all three apps",
+    "Rank system (Gold/Diamond/Platinum) for drivers with wallet limits",
+    "Promo codes, secret activation codes, and full admin audit logs"
+  ],
+  "category": "transportation",
+  "tags": [
+    "ride-booking",
+    "gwadar",
+    "pakistan",
+    "leaflet-maps",
+    "driver-app",
+    "admin-dashboard",
+    "dark-mode",
+    "urdu"
+  ],
+  "last_updated": "2026-05-08T17:25:00.768Z"
+}

@@ -1,0 +1,169 @@
+// Version: 1.0.0
+type ActivationCodeId__811385273 = Nat;
+type ActivationCode__139403997 =
+  {
+    code : Text;
+    expiryDate : Timestamp__301639476;
+    id : ActivationCodeId__811385273;
+    used : Bool;
+    usedAt : ?Timestamp__301639476;
+    usedBy : ?Text
+  };
+type AdminLogId__149465837 = Nat;
+type AdminLog__279303283 =
+  {
+    action : Text;
+    adminId : Text;
+    details : Text;
+    id : AdminLogId__149465837;
+    target : Text;
+    timestamp : Timestamp__301639476
+  };
+type CustomerId__1015005394 = Nat;
+type CustomerStatus__537018452 = {#active; #banned; #suspended};
+type Customer__192853522 =
+  {
+    email : Text;
+    id : CustomerId__1015005394;
+    joinDate : Timestamp__301639476;
+    name : Text;
+    phone : Text;
+    status : CustomerStatus__537018452;
+    totalRides : Nat;
+    walletBalance : Int
+  };
+type Data__791452850<K, V> =
+  {var count : Nat__490723111; kvs : [var ?(K, V)]};
+type DiscountType__580212441 = {#fixed; #percentage};
+type DriverId__1019565535 = Nat;
+type DriverRank__327178514 = {#Diamond; #Gold; #Platinum};
+type DriverStatus__1071461638 =
+  {#blocked; #offline; #onRide; #online; #suspended};
+type Driver__30339499 =
+  {
+    activationCode : Text;
+    cnic : Text;
+    id : DriverId__1019565535;
+    licenseNumber : Text;
+    name : Text;
+    phone : Text;
+    rank : DriverRank__327178514;
+    rating : Float;
+    status : DriverStatus__1071461638;
+    totalRides : Nat;
+    vehicleColor : Text;
+    vehicleModel : Text;
+    vehiclePlate : Text;
+    vehicleType : VehicleType__32047228;
+    walletBalance : Int
+  };
+type Internal__8484328<K, V> =
+  {children : [var ?Node__46230540<K, V>]; data : Data__791452850<K, V>};
+type Leaf__809889148<K, V> = {data : Data__791452850<K, V>};
+type Nat__490723111 = Nat__920180692;
+type Nat__920180692 = Nat;
+type Node__46230540<K, V> =
+  {#internal : Internal__8484328<K, V>; #leaf : Leaf__809889148<K, V>};
+type PaymentMethod__356239964 = {#cash; #easypaisa; #jazzCash; #wallet};
+type PromoCodeId__696399225 = Nat;
+type PromoCode__222593232 =
+  {
+    code : Text;
+    discountAmount : Int;
+    discountType : DiscountType__580212441;
+    expiryDate : Timestamp__301639476;
+    id : PromoCodeId__696399225;
+    status : PromoStatus__16613653;
+    usageCount : Nat;
+    usageLimit : Nat
+  };
+type PromoStatus__16613653 = {#active; #inactive};
+type RideId__497358404 = Nat;
+type RideStatus__364480490 =
+  {
+    #accepted;
+    #arriving;
+    #cancelled;
+    #completed;
+    #inProgress;
+    #reached;
+    #searching;
+    #started
+  };
+type Ride__817980906 =
+  {
+    baseFare : Int;
+    completedAt : ?Timestamp__301639476;
+    createdAt : Timestamp__301639476;
+    customerId : CustomerId__1015005394;
+    customerRating : ?Nat;
+    distanceFare : Int;
+    driverId : ?DriverId__1019565535;
+    driverRating : ?Nat;
+    dropAddress : Text;
+    dropLat : Float;
+    dropLng : Float;
+    id : RideId__497358404;
+    otp : Text;
+    paymentMethod : PaymentMethod__356239964;
+    pickupAddress : Text;
+    pickupLat : Float;
+    pickupLng : Float;
+    status : RideStatus__364480490;
+    totalFare : Int;
+    vehicleType : VehicleType__32047228
+  };
+type Timestamp__301639476 = Int;
+type VehicleType__32047228 = {#Bike; #Car; #Premium; #Rickshaw};
+type Wallet__955312146 =
+  {
+    commissionOwed : Int;
+    driverId : DriverId__1019565535;
+    lastUpdated : Timestamp__301639476;
+    netBalance : Int;
+    totalEarned : Int
+  };
+actor {
+  stable activationCodes :
+    {
+      var root :
+        Node__46230540<ActivationCodeId__811385273, ActivationCode__139403997>;
+      var size : Nat__490723111
+    };
+  stable activationState : {var nextActivationCodeId : Nat};
+  stable adminLogState : {var nextAdminLogId : Nat};
+  stable adminLogs :
+    {
+      var root : Node__46230540<AdminLogId__149465837, AdminLog__279303283>;
+      var size : Nat__490723111
+    };
+  stable customerState : {var nextCustomerId : Nat};
+  stable customers :
+    {
+      var root : Node__46230540<CustomerId__1015005394, Customer__192853522>;
+      var size : Nat__490723111
+    };
+  stable driverState : {var nextDriverId : Nat};
+  stable drivers :
+    {
+      var root : Node__46230540<DriverId__1019565535, Driver__30339499>;
+      var size : Nat__490723111
+    };
+  stable promoState : {var nextPromoId : Nat};
+  stable promos :
+    {
+      var root : Node__46230540<PromoCodeId__696399225, PromoCode__222593232>;
+      var size : Nat__490723111
+    };
+  stable rideState : {var nextRideId : Nat};
+  stable rides :
+    {
+      var root : Node__46230540<RideId__497358404, Ride__817980906>;
+      var size : Nat__490723111
+    };
+  stable wallets :
+    {
+      var root : Node__46230540<DriverId__1019565535, Wallet__955312146>;
+      var size : Nat__490723111
+    }
+};
